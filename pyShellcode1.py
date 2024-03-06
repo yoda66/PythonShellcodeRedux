@@ -183,7 +183,7 @@ ____________________________________________________________
 [*] =============================================""")
         memptr = self.VirtualAlloc(
             0, len(self.shellcode),
-            self.MEM_COMMIT, self.PAGE_READWRITE_EXECUTE
+            self.MEM_COMMIT, self.PAGE_READWRITE
         )
         print('[*] VirtuallAlloc() Memory at: {:08X}'.format(memptr))
         self.RtlMoveMemory(memptr, self.shellcode, len(self.shellcode))
