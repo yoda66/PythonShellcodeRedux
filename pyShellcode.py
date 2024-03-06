@@ -205,7 +205,7 @@ ____________________________________________________________
     def xorme(self, buf, k):
         res = b''
         for ch in buf:
-            res += chr(ord(ch) ^ k).encode('latin1')
+            res += chr(ch ^ k).encode('latin1')
         return res
 
     def SCE_SameProcess(self):
