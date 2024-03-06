@@ -19,14 +19,14 @@ def process_data(data, outfile, enckey=None):
     print(f'[+] Writing data to [{outfile}]')
     of = open(outfile, 'wt')
     line = []
-    of.write(f'    {prefix} =  b""\n')
+    of.write(f'{prefix} =  b""\n')
     for i, ch in enumerate(data):
         if i and not i % 16:
-            of.write(f'    {prefix} += b"' + ''.join(line) + '"\n')
+            of.write(f'{prefix} += b"' + ''.join(line) + '"\n')
             line = []
         line.append(f'\\x{ch:02x}')
     if i and i % 16:
-        of.write(f'    {prefix} += b"' + ''.join(line) + '"\n')
+        of.write(f'{prefix} += b"' + ''.join(line) + '"\n')
     of.close()
 
 if __name__ == '__main__':
