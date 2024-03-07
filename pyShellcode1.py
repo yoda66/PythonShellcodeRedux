@@ -7,8 +7,8 @@ import random
 import os
 import platform
 import sys
-from notepad_x64_encrypted import notepad_x64
-from notepad_x86_encrypted import notepad_x86
+from notepad_x64_encrypted import notepad_x64_encrypted
+from notepad_x86_encrypted import notepad_x86_encrypted
 
 
 class ShellcodeExecute():
