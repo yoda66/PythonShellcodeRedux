@@ -39,7 +39,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     outfile = ''
     if args.f:
-        outfile = pathlib.Path(pathlib.Path(args.f).stem + '.enc')
+        outfile = pathlib.Path(pathlib.Path(args.f).stem + '_encrypted.py')
         with open(args.f, 'rb') as fh:
             data = fh.read()
     else:
