@@ -29,9 +29,9 @@ class ShellcodeExecute():
         name = os.getenv('USERNAME')
         self.username = '{}\\{}'.format(domain, name).lower()
         if shellcode is None and platform.architecture()[0] == '64bit':
-            self.shellcode = self.xorme(notepad_x64, 87)
+            self.shellcode = self.xorme(notepad_x64_encrypted, 87)
         else:
-            self.shellcode = self.xorme(notepad_x86, 87)
+            self.shellcode = self.xorme(notepad_x86_encrypted, 87)
 
         menu = """
 ____________________________________________________________
