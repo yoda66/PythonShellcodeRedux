@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import pathlib
 import random
@@ -29,13 +31,6 @@ class EncodeShellcode():
             if w not in self.picked and self.minlen <= len(w) <= self.maxlen:
                 self.picked.append(w)
                 return w
-
-    def pick_num(self):
-        while True:
-            n = random.randint(1000, 1900)
-            if n not in self.picked:
-                self.picked.append(n)
-                return n
 
     def get_words(self):
         fh = open(self.wordfile, 'rt')
